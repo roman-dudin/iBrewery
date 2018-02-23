@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+<div>
+    <article>
+        {% with message = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </article>
+</div>
+{% block menu %}
+    <a href="{{ url_for('add_recipe') }}">Add recipe</a>
+{% endblock %}
+{% block content %}
+{% endblock %}
+</body>
+</html>
