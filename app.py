@@ -31,25 +31,25 @@ def add_recipe():
 
 
 @app.route('/turnonheating', methods=['GET'])
-def turn_on_heating():
+def turnonheating():
     hal.switch_heating(True)
     return render_template('index.html')
 
 
 @app.route('/turnoffheating', methods=['GET'])
-def turn_off_heating():
+def turnoffheating():
     hal.switch_heating(False)
     return render_template('index.html')
 
 
 @app.route('/turnonpump', methods=['GET'])
-def turn_on_pump():
+def turnonpump():
     hal.switch_pump(True)
     return render_template('index.html')
 
 
 @app.route('/turnoffpump', methods=['GET'])
-def turn_off_pump():
+def turnoffpump():
     hal.switch_pump(False)
     return render_template('index.html')
 
