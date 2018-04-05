@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from datetime import datetime
 import hal
+import mcp3008
 
 app = Flask(__name__)
 recipes = []
@@ -52,6 +53,12 @@ def turnonpump():
 def turnoffpump():
     hal.switch_pump(False)
     return render_template('index.html')
+
+
+@app.route('/gettemp', methods=['GET'])
+def gettemp():
+    t = mcp3008.get_temp()
+    return render_template('index.html', temp=t)
 
 
 if __name__ == '__main__':
