@@ -20,6 +20,11 @@
 </div>
 {% block menu %}
     <a href="{{ url_for('add_recipe') }}">Add recipe</a>
+
+    <a href="{{ url_for('turnonheating') }}">turn on heating</a>
+    <a href="{{ url_for('turnoffheating') }}">turn off heating</a>
+    <a href="{{ url_for('turnonpump') }}">turn on pump</a>
+    <a href="{{ url_for('turnoffpump') }}">turn off pump</a>
 {% endblock %}
 {% block content %}
 {% endblock %}
