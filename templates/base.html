@@ -19,12 +19,37 @@
     </article>
 </div>
 {% block menu %}
-    <a href="{{ url_for('add_recipe') }}">Add recipe</a>
-
-    <a href="{{ url_for('turnonheating') }}">turn on heating</a>
-    <a href="{{ url_for('turnoffheating') }}">turn off heating</a>
-    <a href="{{ url_for('turnonpump') }}">turn on pump</a>
-    <a href="{{ url_for('turnoffpump') }}">turn off pump</a>
+    <h5>
+        <a href="{{ url_for('add_recipe') }}">Add recipe</a>
+    </h5>
+    <h5>
+        <a href="{{ url_for('turnonheating') }}">turn on heating</a>---
+        <a href="{{ url_for('turnoffheating') }}">turn off heating</a>
+    </h5>
+    <h5>
+        <a href="{{ url_for('turnonpump') }}">turn on pump</a>---
+        <a href="{{ url_for('turnoffpump') }}">turn off pump</a>
+    </h5>
+    <h5>
+        <a href="{{ url_for('runmaintainer') }}">run maintainer</a>---
+        <a href="{{ url_for('stopmaintainer') }}">stop maintainer</a>
+    </h5>
+    <h5>
+        <form action="{{ url_for('settemptomaintain') }}" method="POST">
+            <span>
+                <input type="number" name=temp value={{tempToMaintain}}>
+                <input type=submit value="set temp to maintain">
+            </span>
+        </form>
+    </h5>
+    <h5>
+        <form action="{{ url_for('settempdebug') }}" method="POST">
+            <span>
+                <input type="number" name=temp value={{tempToDebug}}>
+                <input type=submit value="set temp debug">
+            </span>
+        </form>
+    </h5>
 {% endblock %}
 {% block content %}
 {% endblock %}
