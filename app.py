@@ -124,8 +124,13 @@ def settemptomaintain():
     return render_template('index.html', tempToMaintain=temp_to_maintain, tempToDebug=hal.get_temp())
 
 
-if __name__ == '__main__':
+@app.route('/startmeasurer', methods=['GET'])
+def startmeasurer():
     measurer = threading.Thread(target=start_measure_temp)
     measurer.start()
     print("Started measurer")
+    return render_template('index.html', tempToMaintain=temp_to_maintain, tempToDebug=hal.get_temp())
+
+
+if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
