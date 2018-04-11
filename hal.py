@@ -1,4 +1,5 @@
 import mcp3008
+import time
 import os
 if os.name == 'posix':
     import RPi.GPIO as GPIO
@@ -38,9 +39,18 @@ temp_debug = 999
 def get_temp():
     #global temp_debug
     #print("get t'=>", temp_debug)
-    return mcp3008.get_temp()
+    tarr = []
+    i = 0
+    while i < 30:
+        i = i + 1
+        tarr.append(mcp3008.get_temp())
+        time.sleep(50)
+
+    return sum(tarr)/len(tarr)
 
 
 def set_temp(temp):
     global temp_debug
     temp_debug = temp
+
+
