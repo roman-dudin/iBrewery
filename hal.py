@@ -42,10 +42,10 @@ def get_temp():
     #print("get t'=>", temp_debug)
     tarr = []
     i = 0
-    while i < 100:
+    while i < 500:
         i = i + 1
         tarr.append(mcp3008.get_temp())
-        time.sleep(0.01)
+        time.sleep(0.001)
 
     return tc.convert_to_celsius(sum(tarr)/len(tarr))
 
