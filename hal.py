@@ -41,10 +41,10 @@ def get_temp():
     #print("get t'=>", temp_debug)
     tarr = []
     i = 0
-    while i < 30:
+    while i < 1000:
         i = i + 1
         tarr.append(mcp3008.get_temp())
-        time.sleep(50)
+        time.sleep(1)
 
     return sum(tarr)/len(tarr)
 
