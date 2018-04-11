@@ -48,7 +48,7 @@ def get_temp():
         time.sleep(0.001)
 
     temp = tc.convert_to_celsius(sum(tarr) / len(tarr))
-    print("Current temperature is: " + temp)
+    print("Current temperature is: " + str(temp))
     return temp
 
 
