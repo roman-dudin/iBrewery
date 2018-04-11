@@ -31,5 +31,6 @@ def MCP3008(clk, cs, miso, mosi):
 
     class A:
         def read_adc(self, par):
-            print(par)
+            print("Reading mock temperature...")
+            return 340
     return A()

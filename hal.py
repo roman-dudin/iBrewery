@@ -1,3 +1,4 @@
+import mcp3008
 import os
 if os.name == 'posix':
     import RPi.GPIO as GPIO
@@ -7,7 +8,9 @@ else:
     print("USE: MOCK GPIO")
 
 GPIO.setmode(GPIO.BCM)
+# Heating relay
 GPIO.setup(20, GPIO.OUT, initial=GPIO.LOW)
+# Pump relay
 GPIO.setup(21, GPIO.OUT, initial=GPIO.LOW)
 
 
@@ -33,9 +36,9 @@ temp_debug = 999
 
 
 def get_temp():
-    global temp_debug
-    print("get t'=>", temp_debug)
-    return temp_debug
+    #global temp_debug
+    #print("get t'=>", temp_debug)
+    return mcp3008.get_temp()
 
 
 def set_temp(temp):
