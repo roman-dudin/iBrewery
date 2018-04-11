@@ -45,7 +45,7 @@ def get_temp():
     while i < 100:
         i = i + 1
         tarr.append(mcp3008.get_temp())
-        time.sleep(1)
+        time.sleep(0.01)
 
     return tc.convert_to_celsius(sum(tarr)/len(tarr))
 
