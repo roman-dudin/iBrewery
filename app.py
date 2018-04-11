@@ -87,7 +87,7 @@ def turnoffpump():
 
 @app.route('/gettemp', methods=['GET'])
 def gettemp():
-    t = mcp3008.get_temp()
+    t = hal.get_temp()
     return render_template('index.html', temp=t)
 
 

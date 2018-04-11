@@ -1,6 +1,7 @@
 import mcp3008
 import time
 import os
+import temp_convert as tc
 if os.name == 'posix':
     import RPi.GPIO as GPIO
     print("USE: ORIGINAL GPIO")
@@ -46,7 +47,7 @@ def get_temp():
         tarr.append(mcp3008.get_temp())
         time.sleep(1)
 
-    return sum(tarr)/len(tarr)
+    return tc.convert_to_celsius(sum(tarr)/len(tarr))
 
 
 def set_temp(temp):

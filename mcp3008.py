@@ -1,6 +1,5 @@
 # Import SPI library (for hardware SPI) and MCP3008 library.
 
-import temp_convert as tc
 import os
 if os.name == 'posix':
     import Adafruit_GPIO.SPI as SPI
@@ -21,4 +20,4 @@ mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
 
 def get_temp():
-    return tc.convert_to_celsius(mcp.read_adc(0))
+    return mcp.read_adc(0)
