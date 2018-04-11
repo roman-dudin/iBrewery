@@ -47,7 +47,9 @@ def get_temp():
         tarr.append(mcp3008.get_temp())
         time.sleep(0.001)
 
-    return tc.convert_to_celsius(sum(tarr)/len(tarr))
+    temp = tc.convert_to_celsius(sum(tarr) / len(tarr))
+    print("Current temperature is: " + temp)
+    return temp
 
 
 def set_temp(temp):

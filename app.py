@@ -128,3 +128,4 @@ if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
     measurer = threading.Thread(target=start_measure_temp)
     measurer.start()
+    print("Started measurer")
