@@ -27,10 +27,10 @@ def switch_heating(state):
 
 def switch_pump(state):
     if state:
-        print("hot on")
+        print("pump on")
         GPIO.output(21, GPIO.HIGH)
     else:
-        print("hot off")
+        print("pump off")
         GPIO.output(21, GPIO.LOW)
 
 
