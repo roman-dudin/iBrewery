@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, jsonify, render_template, request, redirect, url_for, flash
 from datetime import datetime
 import hal
 import threading
@@ -8,16 +8,20 @@ app = Flask(__name__)
 recipes = []
 app.config['SECRET_KEY'] = 'dsfsdf'
 maintainer = None
-temp_to_maintain = 100
-current_temp = hal.get_temp()
+temp_to_maintain = 100.0
+current_temp = 0
 measure = True
 
 
 def start_measure_temp():
     global current_temp
+    global measure
+    print("before measure")
     while measure:
-        time.sleep(5)
+        print("in measure")
         current_temp = hal.get_temp()
+        time.sleep(1)
+        print("after sleep")
 
 
 def maintain_temp(accuracy=0.05):
@@ -96,7 +100,7 @@ def turnoffpump():
 @app.route('/gettemp', methods=['GET'])
 def gettemp():
     #t = hal.get_temp()
-    return render_template('index.html', temp=current_temp)
+    return jsonify(temp=current_temp)
 
 
 @app.route('/runmaintainer', methods=['GET'])
@@ -113,24 +117,22 @@ def stopmaintainer():
 
 @app.route('/settempdebug', methods=['POST'])
 def settempdebug():
-    hal.set_temp(int(request.form['temp']))
+    hal.set_temp(float(request.form['temp']))
     return render_template('index.html', tempToMaintain=temp_to_maintain, tempToDebug=hal.get_temp())
 
 
 @app.route('/settemptomaintain', methods=['POST'])
 def settemptomaintain():
     global temp_to_maintain
-    temp_to_maintain = int(request.form['temp'])
+    temp_to_maintain = float(request.form['temp'])
     return render_template('index.html', tempToMaintain=temp_to_maintain, tempToDebug=hal.get_temp())
 
-
-@app.route('/startmeasurer', methods=['GET'])
 def startmeasurer():
     measurer = threading.Thread(target=start_measure_temp)
     measurer.start()
     print("Started measurer")
-    return render_template('index.html', tempToMaintain=temp_to_maintain, tempToDebug=hal.get_temp())
 
+startmeasurer()
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

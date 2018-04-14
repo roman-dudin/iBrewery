@@ -34,18 +34,15 @@ def switch_pump(state):
         GPIO.output(21, GPIO.LOW)
 
 
-temp_debug = 999
-
-
 def get_temp():
     #global temp_debug
     #print("get t'=>", temp_debug)
     tarr = []
     i = 0
-    while i < 500:
+    while i < 100:
         i = i + 1
         tarr.append(mcp3008.get_temp())
-        time.sleep(0.001)
+        time.sleep(0.01)
 
     temp = tc.convert_to_celsius(sum(tarr) / len(tarr))
     print("Current temperature is: " + str(temp))
@@ -53,7 +50,5 @@ def get_temp():
 
 
 def set_temp(temp):
-    global temp_debug
-    temp_debug = temp
-
-
+    import mock as mock
+    mock.set_temp_debug(temp)

@@ -4,6 +4,7 @@ IN = "IN"
 BCM = "BCM"
 LOW = "LOW"
 HIGH = "HIGH"
+debug_temp = 999.0
 
 
 def setmode(a):
@@ -31,6 +32,12 @@ def MCP3008(clk, cs, miso, mosi):
 
     class A:
         def read_adc(self, par):
-            print("Reading mock temperature...")
-            return 340
+            global debug_temp
+            # print("Reading mock temperature...")
+            return debug_temp
     return A()
+
+
+def set_temp_debug(temp):
+    global debug_temp
+    debug_temp = temp

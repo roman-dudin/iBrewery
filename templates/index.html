@@ -6,7 +6,22 @@ Akvelon iBrewery
 
 {% block content %}
 <div>Hello</div>
-<p>
+<p id="currentTemp">
     Temp is: {{temp}}
 </p>
+<script>
+    function update_values() {
+        fetch('/gettemp')
+            .then(response => response.json())
+            .then(res => {
+                console.log(res);
+                document.getElementById("currentTemp").innerHTML = `Temp is: ${res.temp}`
+                setTimeout(update_values, 1000);
+            })
+            .catch(function (error) {
+                console.log(`Error: ${error.message}`);
+                setTimeout(update_values, 1000);
+            });
+    }
+</script>
 {% endblock %}
